@@ -1,14 +1,9 @@
 package devfast_thuctap;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-
-
-public class Bai5findProductByCategory {
+public class Bai6findProductbyCategory {
 	public static void main(String[] args) {
-		// Arraylist Product
 		ArrayList<Product> listProducts = new ArrayList<Product>();
 		listProducts.add(new Product("CPU",750,10,1));
 		listProducts.add(new Product("RAM",50,2,2));
@@ -25,18 +20,16 @@ public class Bai5findProductByCategory {
 		listCategory.add(new Category(2,"Memory"));
 		listCategory.add(new Category(3,"Card"));
 		listCategory.add(new Category(4,"Acsesory"));
-		
-		Scanner scanner = new Scanner(System.in);
-		int categoryId =1;
-		ArrayList<Product> list=findProductByCategory(listProducts, categoryId);
+		int price =100;
+		ArrayList<Product> list= findProductByPrice(listProducts, price);
 		for(Product i:list) {
 			System.out.println(i.toString());
 		}
 	}
-	public static ArrayList<Product> findProductByCategory(ArrayList<Product> listProducts,int categoryId) {
+	public static ArrayList<Product> findProductByPrice(ArrayList<Product> listProducts,int price) {
 		ArrayList<Product> products=new ArrayList<Product>();
 		for(int index=0;index< listProducts.size();index++) {
-			if(categoryId == listProducts.get(index).getCategoryId()) {
+			if(listProducts.get(index).getPrice()<=price) {
 				products.add(listProducts.get(index));
 			}
 		}
@@ -47,20 +40,4 @@ public class Bai5findProductByCategory {
 			return products;
 		}
 	}
-	
-	public static ArrayList<Product> sortByPrice(ArrayList<Product> listProducts){
-		for(int  i=0;i<listProducts.size()-1;i++) {
-			for(int j=i+1;j<listProducts.size();j++) {
-				if(listProducts.get(i).getPrice()>listProducts.get(j).getPrice()) {
-					Product tmp=listProducts.get(i);
-					listProducts.set(i, listProducts.get(j));
-					listProducts.set(j, tmp);
-				}
-			}
-		}
-		return listProducts;
-	}
-	
-	
-	
 }

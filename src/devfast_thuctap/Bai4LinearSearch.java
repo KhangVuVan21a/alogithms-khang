@@ -3,7 +3,7 @@ package devfast_thuctap;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Bai3LinearSearch {
+public class Bai4LinearSearch {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -17,9 +17,9 @@ public class Bai3LinearSearch {
 		listProducts.add(new Product("VGA",60,35,3));
 		listProducts.add(new Product("Monitor",750,10,1));
 		listProducts.add(new Product("Case",120,28,5));
-		Scanner scanner =new Scanner(System.in);
-		String name = (scanner.nextLine());
-		//String name="RAM";
+//		Scanner scanner =new Scanner(System.in);
+//		String name = (scanner.nextLine());
+		String name="RAM";
 
 		System.out.println(findProduct(listProducts, name.trim()).toString());
 		
