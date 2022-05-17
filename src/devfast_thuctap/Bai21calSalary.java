@@ -8,11 +8,11 @@ public class Bai21calSalary {
 	public static double calSalary(double salary,int n) {
 		if(n==0)
 			return salary;
-		return calSalary(salary+salary*0.1, n-1);
+		return calSalary(salary, n-1)*1.1;
 	}
 	public static double calSalary1(double salary,int n) {
 		while(n>0) {
-			salary+=salary*0.1;
+			salary=salary*1.1;
 			n--;
 		}
 		return salary;
