@@ -10,35 +10,60 @@ public class Database {
 	private ArrayList<Product> productTable=new ArrayList<Product>();
 	private ArrayList<Category> categoryTable=new ArrayList<Category>();
 	private ArrayList<Accessory> accessoryTable=new ArrayList<Accessory>();
-	public Database instants;
+	private static final Database INSTANTS= new Database();
+	// const string classname
+	static final String PRODUCT="product";
+	static final String CATEGORY="category";
+	static final String ACCESSORY="accessory";
+	private Database() {
+		
+	}
+	public static Database getInstants() {
+		return INSTANTS;
+	}
+	//add 1 Object for table by "name", return the number of row added
 	public int insertTable(String name,Object row) {
-		if(name.equalsIgnoreCase("product")) {
+		//add 1 object for productTable
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			this.productTable.add((Product)row);
 			return 1;
-		}else if(name.equalsIgnoreCase("category")){
+		}
+		//add 1 object for categoryTable
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			this.categoryTable.add((Category)row);
 			return 1;
-		}else if(name.equalsIgnoreCase("accessory")){
+		}
+		//add 1 object for accessoryTable
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			this.accessoryTable.add((Accessory)row);
 			return 1;
 		}else {
 			return 0;
 		}
 	}
+	// return arraylist by "name" and "where"
 	public ArrayList selectTable(String name,String where){
-		if(name.equalsIgnoreCase("product")) {
+		//return arraylist productTable
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			return this.productTable;
-		}else if(name.equalsIgnoreCase("category")){
+		}
+		//return arraylist categoryTable
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			return this.categoryTable;
-		}else if(name.equalsIgnoreCase("accessory")){
+		}
+		//return arraylist accessoryTable
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			return this.accessoryTable;
 		}else {
 			return null;
 		}
 	}
+	// return the number of row updated by "name" and "row"
 	public int updateTable(String name,Object row) {
+		// the  number of row updated
 		int count=0;
-		if(name.equalsIgnoreCase("product")) {
+		//update productTable and count the number row updated
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			Product rows=(Product)row;
 			for(int i=0;i<this.productTable.size();i++) {
 				if(productTable.get(i).getId() == rows.getId())
@@ -48,7 +73,9 @@ public class Database {
 				}
 			}
 			return count;
-		}else if(name.equalsIgnoreCase("category")){
+		}
+		//update categoryTable and count the number row updated
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			Category rows=(Category)row;
 			for(int i=0;i<this.categoryTable.size();i++) {
 				if(categoryTable.get(i).getId() == rows.getId())
@@ -58,7 +85,9 @@ public class Database {
 				}
 			}
 			return count;
-		}else if(name.equalsIgnoreCase("accessory")){
+		}
+		//update accessoryTable and count the number row updated
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			Accessory rows=(Accessory)row;
 			for(int i=0;i<this.accessoryTable.size();i++) {
 				if(accessoryTable.get(i).getId() == rows.getId())
@@ -72,34 +101,46 @@ public class Database {
 			return 0;
 		}
 	}
+	//delete "row" by "name" in data, return true if it had more 1 row deleted else return false
 	public boolean deleteTable(String name, Object row) {
-		if(name.equalsIgnoreCase("product")) {
+		//delete "row" in productTable
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			Product rows=(Product)row;
-			productTable.remove(rows);
-			return true;
-		}else if(name.equalsIgnoreCase("category")){
+			return productTable.remove(rows);
+		}
+		//delete "row" in categoryTable
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			Category rows=(Category)row;
-			categoryTable.remove(rows);
-			return true;
-		}else if(name.equalsIgnoreCase("accessory")){
+			return categoryTable.remove(rows);
+		}
+		//delete "row" in accessoryTable
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			Accessory rows=(Accessory)row;
-			accessoryTable.remove(rows);
-			return true;
+			return accessoryTable.remove(rows);
 		}else {
 			return false;
 		}
 	}
+	//delete all data in table by "name"
 	public void truncateTable(String name) {
-		if(name.equalsIgnoreCase("product")) {
+		//delete all data in product
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			productTable.clear();
-		}else if(name.equalsIgnoreCase("category")){
+		}
+		//delete all data in category
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			categoryTable.clear();
-		}else if(name.equalsIgnoreCase("accessory")){
+		}
+		//delete all data in accessory
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			accessoryTable.clear();
 		}
 	}
+	// update data by "Id" and return the number of row updated   
 	public int updateTableById(int Id,Object row) {
+		//the number of row updated
 		int count=0;
+		//update data in productTable 
 		if(row.getClass().getName().equalsIgnoreCase(Product.class.getName())) {
 			for(int i=0;i<productTable.size();i++) {
 				if(Id == productTable.get(i).getId()) {
@@ -108,7 +149,9 @@ public class Database {
 				}
 			}
 			return count;
-		}else if(row.getClass().getName().equalsIgnoreCase(Category.class.getName())){
+		}
+		//update data in categoryTable 
+		if(row.getClass().getName().equalsIgnoreCase(Category.class.getName())){
 			for(int i=0;i<categoryTable.size();i++) {
 				if(Id == categoryTable.get(i).getId()) {
 					categoryTable.set(i,(Category) row);
@@ -116,7 +159,9 @@ public class Database {
 				}
 			}
 			return count;
-		}else if(row.getClass().getName().equalsIgnoreCase(Accessory.class.getName())){
+		}
+		//update data in accessoryTable 
+		if(row.getClass().getName().equalsIgnoreCase(Accessory.class.getName())){
 			for(int i=0;i<accessoryTable.size();i++) {
 				if(Id == accessoryTable.get(i).getId()) {
 					accessoryTable.set(i,(Accessory) row);
@@ -128,8 +173,11 @@ public class Database {
 			return 0;
 		}
 	}
+	//find all table by "name" and "id", return arraylist 
 	public ArrayList findAll(String name,int id) {
-		if(name.equalsIgnoreCase("product")) {
+		
+		// Add product for "arrayList"
+		if(name.equalsIgnoreCase(this.PRODUCT)) {
 			ArrayList<Product> arrayList= new ArrayList<Product>();
 			for(int i=0;i<productTable.size();i++) {
 				if(id== productTable.get(i).getId()) {
@@ -137,7 +185,9 @@ public class Database {
 				}
 			}
 			return arrayList;
-		}else if(name.equalsIgnoreCase("category")){
+		} 
+		// Add category for "arrayList"
+		if(name.equalsIgnoreCase(this.CATEGORY)){
 			ArrayList<Category> arrayList= new ArrayList<Category>();
 			for(int i=0;i<categoryTable.size();i++) {
 				if(id== categoryTable.get(i).getId()) {
@@ -146,7 +196,9 @@ public class Database {
 			}
 			return arrayList;
 			
-		}else if(name.equalsIgnoreCase("accessory")){
+		}
+		// Add accessory for "arrayList"
+		if(name.equalsIgnoreCase(this.ACCESSORY)){
 			ArrayList<Accessory> arrayList= new ArrayList<Accessory>();
 			for(int i=0;i<accessoryTable.size();i++) {
 				if(id== accessoryTable.get(i).getId()) {

@@ -6,9 +6,8 @@ import entity.Accessory;
 import entity.Product;
 
 public class CategoryDaoDemo {
-	private Database database;
 	public void initDatabaseTest() {
-		database=new Database();
+		Database database=Database.getInstants();
 		database.insertTable("product", new Product(1,"CPU",1));
 		database.insertTable("product", new Product(2,"RAM",2));
 		database.insertTable("product", new Product(3,"HDD",2));
@@ -32,61 +31,61 @@ public class CategoryDaoDemo {
 		
 	}
 	public void printTableTest() {
-		for(Object i:database.instants.selectTable("product","")) {
+		for(Object i:Database.getInstants().selectTable("product","")) {
 			System.out.println((Product)i);
 		}
-		for(Object i:database.instants.selectTable("category","")) {
+		for(Object i:Database.getInstants().selectTable("category","")) {
 			System.out.println((Category)i);
 		}
-		for(Object i:database.instants.selectTable("accessory","")) {
+		for(Object i:Database.getInstants().selectTable("accessory","")) {
 			System.out.println((Accessory)i);
 		}
 	}
 	public void insertTableTest() {
-		System.out.println(database.insertTable("product",new Product(10, "Product10",2)));
-		System.out.println(database.insertTable("category",new Category(6, "Categori6")));
-		System.out.println(database.insertTable("accessory",new Accessory(6, "Accessory6")));
+		System.out.println(Database.getInstants().insertTable("product",new Product(10, "Product10",2)));
+		System.out.println(Database.getInstants().insertTable("category",new Category(6, "Categori6")));
+		System.out.println(Database.getInstants().insertTable("accessory",new Accessory(6, "Accessory6")));
 	}
 	public void selectTableTest() {
-		for(Object i:database.instants.selectTable("product","")) {
+		for(Object i:Database.getInstants().selectTable("product","")) {
 			System.out.println((Product)i);
 		}
-		for(Object i:database.instants.selectTable("category","")) {
+		for(Object i:Database.getInstants().selectTable("category","")) {
 			System.out.println((Category)i);
 		}
-		for(Object i:database.instants.selectTable("accessory","")) {
+		for(Object i:Database.getInstants().selectTable("accessory","")) {
 			System.out.println((Accessory)i);
 		}
 	}
 	public void updateTableTest() {
-		System.out.println(database.instants.updateTableById(1, database.instants.selectTable("product","")));
+		System.out.println(Database.getInstants().updateTableById(1, Database.getInstants().selectTable("product","")));
 
 	}
 	public void deleteTableTest() {
-		System.out.println(database.deleteTable("product", new Product(3,"HDD",2)));
-		System.out.println(database.deleteTable("category", new Category(3, "Card")));
-		System.out.println(database.deleteTable("accessory", new Accessory(4, "acc4")));	
+		System.out.println(Database.getInstants().deleteTable("product", new Product(3,"HDD",2)));
+		System.out.println(Database.getInstants().deleteTable("category", new Category(3, "Card")));
+		System.out.println(Database.getInstants().deleteTable("accessory", new Accessory(4, "acc4")));	
 	}
 	public void truncateTableTest() {
-		database.truncateTable("product");
-		database.truncateTable("category");
-		database.truncateTable("accessory");
+		Database.getInstants().truncateTable("product");
+		Database.getInstants().truncateTable("category");
+		Database.getInstants().truncateTable("accessory");
 		printTableTest();
 	}
 	public void insertTest() {
-		System.out.println(database.insertTable("product",new Product(10, "Product10",2)));
-		System.out.println(database.insertTable("category",new Category(6, "Categori6")));
-		System.out.println(database.insertTable("accessory",new Accessory(6, "Accessory6")));
+		System.out.println(Database.getInstants().insertTable("product",new Product(10, "Product10",2)));
+		System.out.println(Database.getInstants().insertTable("category",new Category(6, "Categori6")));
+		System.out.println(Database.getInstants().insertTable("accessory",new Accessory(6, "Accessory6")));
 
 	}
 	public void findAllTest() {
-		System.out.println(database.findAll("product", 1).toString());
-		System.out.println(database.findAll("category", 1).toString());
-		System.out.println(database.findAll("accessory", 1).toString());
+		System.out.println(Database.getInstants().findAll("product", 1).toString());
+		System.out.println(Database.getInstants().findAll("category", 1).toString());
+		System.out.println(Database.getInstants().findAll("accessory", 1).toString());
 	}
 	public void updateTest() {
-		System.out.println(database.updateTableById(1,new Product(10, "Product10",2)));
-		System.out.println(database.updateTableById(1,new Category(7, "Category7")));
-		System.out.println(database.updateTableById(1,new Accessory(7, "Accessory")));
+		System.out.println(Database.getInstants().updateTableById(1,new Product(10, "Product10",2)));
+		System.out.println(Database.getInstants().updateTableById(1,new Category(7, "Category7")));
+		System.out.println(Database.getInstants().updateTableById(1,new Accessory(7, "Accessory")));
 	}
 }

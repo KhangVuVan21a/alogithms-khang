@@ -6,35 +6,28 @@ import entity.Category;
 
 
 public class CategoryDAO {
-
+	//add "row" into data, return true if "row" added
 	public boolean insert(Category row) {
-		Database database=new Database();
-		int check=database.insertTable("category", row);
+		Database database= Database.getInstants();
+		int check=database.insertTable(database.CATEGORY, row);
 		return (check>0?true:false);
 	}
+	//update "row"
 	public int update(Category row) {
-		Database database = new Database();
-		int check = database.updateTable("category", row);
+		Database database = Database.getInstants();
+		int check = database.updateTable(database.CATEGORY, row);
 		return check;
 	}
 	public boolean delete(Object row) {
-		Database database =new  Database();
-		return database.deleteTable("category", row);
+		Database database =Database.getInstants();
+		return database.deleteTable(database.CATEGORY, row);
 	}
 	public ArrayList findAll() {
-		Database database =new Database();
-		return database.selectTable("category","");
+		Database database =Database.getInstants();
+		return database.selectTable(database.CATEGORY,"");
 	}
 	public Object findById(int id) {
-		Database database=new Database();
-		for(Object object:database.selectTable("category","" )) {
-			Category category=(Category)object;
-			if(category.getId()==id) {
-				return category;
-			}
-		}
-		return null;
+		Database database=Database.getInstants();
+		return database.findAll(database.CATEGORY, id);
 	}
-	
-	
 }

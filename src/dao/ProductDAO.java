@@ -6,23 +6,23 @@ import entity.Product;
 
 public class ProductDAO {
 	public int insert(Product row) {
-		Database database = new Database();
+		Database database = Database.getInstants();
 		return database.insertTable("product", row);
 	}
 	public int update(Product row) {
-		Database database =new Database();
+		Database database =Database.getInstants();
 		return database.updateTable("product", row);
 	}
 	public boolean delete(Product row) {
-		Database database=new Database();
+		Database database=Database.getInstants();
 		return database.deleteTable("product", row); 
 	}
 	public ArrayList findAll() {
-		Database database = new Database();
+		Database database = Database.getInstants();
 		return database.findAll("product", 1);
 	}
 	public Object findById(int id) {
-		Database database = new Database();
+		Database database = Database.getInstants();
 		for(Object object:database.selectTable("product","")) {
 			Product product=(Product)object;
 			if(product.getId() == id) {
@@ -32,7 +32,7 @@ public class ProductDAO {
 		return null;
 	}
 	public Object findByName(String name) {
-		Database database = new Database();
+		Database database = Database.getInstants();
 		for(Object object:database.selectTable("product","")) {
 			Product product=(Product)object;
 			if(product.getName() == name) {
@@ -42,7 +42,7 @@ public class ProductDAO {
 		return null;
 	}
 	public ArrayList search(Product where) {
-		Database database = new Database();
+		Database database = Database.getInstants();
 		ArrayList<Product> arrayList=new ArrayList<Product>();
 		for(Object object:database.selectTable("product","")) {
 			Product product=(Product)object;
