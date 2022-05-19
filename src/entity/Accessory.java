@@ -1,28 +1,23 @@
 package entity;
 
-public class Accessory {
-	private int id;
-	private String name;
+public class Accessory extends BaseRow {
+	public Accessory() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param id
+	 * @param name
+	 */
 	public Accessory(int id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
+
 	@Override
 	public String toString() {
-		return "Assessory [id=" + id + ", name=" + name + "]";
+		return "Accessory ["+super.toString()+"]";
 	}
 	
+
 }

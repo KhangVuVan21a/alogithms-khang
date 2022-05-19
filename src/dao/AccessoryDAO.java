@@ -3,27 +3,24 @@ package dao;
 import java.util.ArrayList;
 
 import entity.Accessory;
+import entity.Category;
+import entity.Product;
 
-public class AccessoryDAO {
-	public int insert(Accessory row) {
-		return 0;
-	}
-	public int updateTable(Accessory row) {
-		return 0;
-	}
-	public boolean delete(Accessory row) {
-		return false;
-	}
-	public ArrayList findAll() {
-		return null;
-	}
-	public Accessory findById(int Id) {
-		return null;
-	}
-	public Accessory findByName(String name) {
-		return null;
-	}
+public class AccessoryDAO extends BaseDao {
+	/**
+	 * search accessory 
+	 * @param where
+	 * @return arrayList
+	 */
 	public ArrayList search(Accessory where) {
-		return null;
+		ArrayList<Accessory> arrayList = new ArrayList<Accessory>();
+		for (Object object : database.selectTable(database.ACCESSORY, "")) {
+			Accessory accessory = (Accessory) object;
+			if (accessory.equals(where)) {
+				arrayList.add(accessory);
+			}
+		}
+		return arrayList;
 	}
+
 }

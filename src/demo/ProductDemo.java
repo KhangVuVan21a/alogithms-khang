@@ -1,6 +1,8 @@
-package entity;
+package demo;
 
 import java.util.Scanner;
+
+import entity.Product;
 
 public class ProductDemo {
 	public Product createProductTest() {

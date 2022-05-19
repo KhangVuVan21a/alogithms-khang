@@ -3,31 +3,22 @@ package dao;
 import java.util.ArrayList;
 
 import entity.Category;
+import entity.Product;
 
-
-public class CategoryDAO {
-	//add "row" into data, return true if "row" added
-	public boolean insert(Category row) {
-		Database database= Database.getInstants();
-		int check=database.insertTable(database.CATEGORY, row);
-		return (check>0?true:false);
-	}
-	//update "row"
-	public int update(Category row) {
-		Database database = Database.getInstants();
-		int check = database.updateTable(database.CATEGORY, row);
-		return check;
-	}
-	public boolean delete(Object row) {
-		Database database =Database.getInstants();
-		return database.deleteTable(database.CATEGORY, row);
-	}
-	public ArrayList findAll() {
-		Database database =Database.getInstants();
-		return database.selectTable(database.CATEGORY,"");
-	}
-	public Object findById(int id) {
-		Database database=Database.getInstants();
-		return database.findAll(database.CATEGORY, id);
+public class CategoryDAO extends BaseDao{
+	/**
+	 * search category
+	 * @param where
+	 * @return arrayList
+	 */
+	public ArrayList search(Category where) {
+		ArrayList<Category> arrayList = new ArrayList<Category>();
+		for (Object object : database.selectTable(database.CATEGORY, "")) {
+			Category category = (Category) object;
+			if (category.equals(where)) {
+				arrayList.add(category);
+			}
+		}
+		return arrayList;
 	}
 }
