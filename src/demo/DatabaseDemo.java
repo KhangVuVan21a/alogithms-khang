@@ -1,21 +1,98 @@
+
 package demo;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import dao.Database;
 import dao.ProductDAO;
-import devfast_thuctap.Category;
 import entity.Accessory;
+import entity.Category;
 import entity.Product;
 
 public class DatabaseDemo{
 	public static void main(String[] args) {
 		Database database=Database.getInstants();
-//		System.out.println(database.insertTable(Product.class.getName(), new Product(1,"CPU",1)));
-//		System.out.println(database.selectTable("product", ""));
-		ProductDAO dao=new ProductDAO();
-		dao.insert( new Product(1,"CPU",1));
-		System.out.println(dao.findAll(Product.class.getName()));
-		System.out.println(dao.findById(Product.class.getName(), 1).toString());
+		System.out.println(database.insertTable(Product.class.getName(), new Product(1,"CPU",1)));
+		System.out.println(database.insertTable(Product.class.getName(), new Product(2,"RAM",2)));
+		System.out.println(database.insertTable(Product.class.getName(), new Product(3,"HDD",2)));
+		System.out.println(database.insertTable(Product.class.getName(), new Product(4,"Main",1)));
+		System.out.println(database.insertTable(Product.class.getName(),new Product(5,"Keyboard",4)));
+		System.out.println(database.insertTable(Product.class.getName(), new Product(6,"Mouse",4)));
+		System.out.println(database.insertTable(Category.class.getName(), new Category(1, "Computer")));
+		System.out.println(database.insertTable(Category.class.getName(),new Category(2, "Memory")));
+		System.out.println(database.insertTable(Category.class.getName(), new Category(3, "Card")));
+		System.out.println(database.insertTable(Category.class.getName(), new Category(4, "Accessory")));
+		System.out.println(database.insertTable(Accessory.class.getName(),  new Accessory(1, "acc1")));
+		System.out.println(database.insertTable(Accessory.class.getName(),   new Accessory(2, "acc2")));
+		System.out.println(database.insertTable(Accessory.class.getName(),   new Accessory(3, "acc3")));
+		System.out.println(database.insertTable(Accessory.class.getName(),   new Accessory(4, "acc4")));
+		System.out.println(database.insertTable(Accessory.class.getName(),  new Accessory(5, "acc5")));
+		
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		System.out.println(database.updateTable(Product.class.getName(),  new Product(1,"CPU",2)));
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		System.out.println(database.updateTable(Category.class.getName(),  new Category(1, "ComputerEEEEEE")));
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		System.out.println(database.updateTable(Accessory.class.getName(),   new Accessory(1, "acc111111")));
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		System.out.println(database.deleteTable(Product.class.getName(), new Product(2,"RAM",2)));
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		System.out.println(database.deleteTable(Category.class.getName(), new Category(1, "Computer")));
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		System.out.println(database.deleteTable(Accessory.class.getName(),   new Accessory(1, "acc1")));
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+		
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		database.truncateTable(Product.class.getName());
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+		
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		database.truncateTable(Category.class.getName());
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		database.truncateTable(Accessory.class.getName());
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+		
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		System.out.println(database.updateTableById(2, new Product(2,"RAAM",2)));
+//		System.out.println(database.selectTable(Product.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		System.out.println(database.updateTableById(1, new Category(1, "ComputerRRRRR")));
+//		System.out.println(database.selectTable(Category.class.getName(), ""));
+//		
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		System.out.println(database.updateTableById(1,   new Accessory(1, "acc12")));
+//		System.out.println(database.selectTable(Accessory.class.getName(), ""));
+//		System.out.println(database.findAll(Product.class.getName()));
+//		System.out.println(database.findAll(Category.class.getName()));
+//		System.out.println(database.findAll(Accessory.class.getName()));
+		
+//		System.out.println(database.findAll(Product.class.getName(),1));
+//		System.out.println(database.findAll(Category.class.getName(),1));
+//		System.out.println(database.findAll(Accessory.class.getName(),1));
+		
+		System.out.println(database.findById(Product.class.getName(),1));
+		System.out.println(database.findById(Category.class.getName(),1));
+		System.out.println(database.findById(Accessory.class.getName(),1));
+		//printTableTest();
+		
+//		ProductDAO dao=new ProductDAO();
+//		dao.insert( new Product(1,"CPU",1));
+//		System.out.println(dao.findAll(Product.class.getName()));
+//		System.out.println(dao.findById(Product.class.getName(), 1).toString());
 		
 	}
 	public void initDatabaseTest() {
@@ -42,14 +119,14 @@ public class DatabaseDemo{
 			
 		
 	}
-	public void printTableTest() {
-		for(Object i:Database.getInstants().selectTable("product","")) {
+	public static void printTableTest() {
+		for(Object i:Database.getInstants().selectTable(Product.class.getName(),"")) {
 			System.out.println((Product)i);
 		}
-		for(Object i:Database.getInstants().selectTable("category","")) {
+		for(Object i:Database.getInstants().selectTable(Category.class.getName(),"")) {
 			System.out.println((Category)i);
 		}
-		for(Object i:Database.getInstants().selectTable("accessory","")) {
+		for(Object i:Database.getInstants().selectTable(Accessory.class.getName(),"")) {
 			System.out.println((Accessory)i);
 		}
 	}

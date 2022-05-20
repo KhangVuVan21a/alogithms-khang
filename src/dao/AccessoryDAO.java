@@ -16,7 +16,7 @@ public class AccessoryDAO extends BaseDao {
 		ArrayList<Accessory> arrayList = new ArrayList<Accessory>();
 		for (Object object : database.selectTable(database.ACCESSORY, "")) {
 			Accessory accessory = (Accessory) object;
-			if (accessory.equals(where)) {
+			if (accessory.getId()==where.getId()) {
 				arrayList.add(accessory);
 			}
 		}

@@ -1,22 +1,22 @@
 package demo;
 
+import dao.AccessoryDAO;
+import dao.CategoryDAO;
 import dao.Database;
-import dao.ProductDAO;
 import entity.Accessory;
 import entity.Category;
 import entity.Product;
 
-public class ProductDaoDemo {
+public class AccessoryDaoDemo {
 	public static void main(String[] args) {
 		initDatabaseTest();
-		ProductDAO dao=new ProductDAO();
-//		System.out.println(dao.findByName("CPU"));
-//		System.out.println(dao.search( new Product(2,"CPU",1)));
-		System.out.println(dao.insert(new Product(7,"Mouseeeeee",4)));
-//		System.out.println(dao.update(new Product(1,"Mouseeeeee",4)));
-		System.out.println(dao.delete(new Product(7,"Mouseeeeee",4)));
-		System.out.println(dao.findAll(Product.class.getName()));
-		System.out.println(dao.findById(Product.class.getName(),4));
+		AccessoryDAO dao=new AccessoryDAO();
+		System.out.println(dao.search( new Accessory(2, "acc2")));
+		System.out.println(dao.insert(  new Accessory(100, "acc3")));
+		System.out.println(dao.update( new Accessory(100, "acc3")));
+		System.out.println(dao.delete(new Accessory(100, "acc3")));
+		System.out.println(dao.findAll(Accessory.class.getName()));
+		System.out.println(dao.findById(Accessory.class.getName(),4));
 	}
 	public static void initDatabaseTest() {
 		Database database=Database.getInstants();

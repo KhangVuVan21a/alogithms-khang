@@ -14,7 +14,7 @@ public class ProductDAO extends BaseDao{
 	public Product findByName(String name) {
 		for(Object object:database.selectTable(database.PRODUCT,"")) {
 			Product product=(Product)object;
-			if(product.getName() == name) {
+			if(name==product.getName()) {
 				return product;
 			}
 		}
@@ -29,7 +29,7 @@ public class ProductDAO extends BaseDao{
 		ArrayList<Product> arrayList=new ArrayList<Product>();
 		for(Object object:database.selectTable(database.PRODUCT,"")) {
 			Product product=(Product)object;
-			if(product.equals(where)) {
+			if(product.getId()==where.getId()) {
 				arrayList.add(product);
 			}
 		}

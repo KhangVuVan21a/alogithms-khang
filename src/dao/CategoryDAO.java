@@ -15,7 +15,7 @@ public class CategoryDAO extends BaseDao{
 		ArrayList<Category> arrayList = new ArrayList<Category>();
 		for (Object object : database.selectTable(database.CATEGORY, "")) {
 			Category category = (Category) object;
-			if (category.equals(where)) {
+			if (category.getId()==where.getId()) {
 				arrayList.add(category);
 			}
 		}
